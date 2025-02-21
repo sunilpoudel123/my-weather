@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #acb6e5);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Rain Effect */
+    .rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .drop {
+      position: absolute;
+      width: 2px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.5);
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #333;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 1;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    input {
+      width: 200px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input:focus {
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    button {
+      background: #4a90e2;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background: #357abd;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-container {
+      display: flex;
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    #weather, .forecast {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    #weather {
+      flex: 2;
+      max-width: 400px;
+    }
+
+    .forecast {
+      flex: 1;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #weather:hover, .forecast:hover {
+      transform: translateY(-5px);
+    }
+
+    #weather h2, .forecast h3 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    #weather img, .forecast img {
+      width: 60px;
+      height: 60px;
+    }
+
+    #weather p, .forecast p {
+      margin: 8px 0;
+      color: #555;
+      font-size: 16px;
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      text-align: center;
+      color: #666;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 700px) {
+      .weather-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      input {
+        width: 150px;
+      }
+      input:focus {
+        width: 170px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="rain"></div>
+<header>
+  <h1>Weather App</h1>
+</header>
+<main>
+  <div>
+    <div class="input-container">
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <button id="getWeatherBtn">Get Weather</button>
+    </div>
+    <div class="weather-container">
+      <div id="weather"></div>
+      <div class="forecast"></div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>Powered by A.I.️</p>
+</footer>
+<script src="app.js"></script>
+<script>
+  // Generate raindrops
+  const rain = document.querySelector('.rain');
+  for (let i = 0; i < 50; i++) {
+    const drop = document.createElement('div');
+    drop.className = 'drop';
+    drop.style.left = `${Math.random() * 100}%`;
+    drop.style.animationDuration = `${0.5 + Math.random()}s`;
+    drop.style.animationDelay = `${Math.random() * 2}s`;
+    rain.appendChild(drop);
+  }
+</script>
+</body>
+</html>
