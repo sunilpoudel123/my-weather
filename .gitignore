@@ -1,0 +1,49 @@
+# Node.js specific
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json  # Optional: include if you use yarn exclusively
+yarn.lock         # Optional: include if you use npm exclusively
+
+# Build output
+dist/
+build/
+out/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Dependency directories
+bower_components/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+*.lcov
+
+# Miscellaneous
+*.pid
+*.seed
+*.pid.lock
+
+# TypeScript (if applicable)
+*.tsbuildinfo
