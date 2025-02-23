@@ -47,3 +47,5 @@ coverage/
 
 # TypeScript (if applicable)
 *.tsbuildinfo
+/.idea/
+config.js

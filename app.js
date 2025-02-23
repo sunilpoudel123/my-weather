@@ -1,10 +1,10 @@
-const apiKey = '60fbb297db06791154f290689b51b52c';
+const apiKey = config.apiKey;
 const weatherDiv = document.getElementById('weather');
 const forecastDiv = document.querySelector('.forecast');
 const cityInput = document.getElementById('cityInput');
 
 document.getElementById('getWeatherBtn').addEventListener('click', getWeather);
-cityInput.addEventListener('keypress', function(event) {
+cityInput.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') getWeather();
 });
 
@@ -40,10 +40,10 @@ async function fetchForecast(city) {
 }
 
 function displayCurrentWeather(data) {
-    const { name } = data;
-    const { temp, humidity } = data.main;
-    const { speed } = data.wind;
-    const { description, icon } = data.weather[0];
+    const {name} = data;
+    const {temp, humidity} = data.main;
+    const {speed} = data.wind;
+    const {description, icon} = data.weather[0];
     const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
     weatherDiv.innerHTML = `
@@ -66,9 +66,13 @@ function displayForecast(data) {
     }
 
     dailyData.forEach(day => {
-        const date = new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-        const { temp } = day.main;
-        const { description, icon } = day.weather[0];
+        const date = new Date(day.dt * 1000).toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        });
+        const {temp} = day.main;
+        const {description, icon} = day.weather[0];
         const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
         forecastDiv.innerHTML += `
